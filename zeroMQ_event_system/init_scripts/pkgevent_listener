@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# pkgevent_listener
+#
+# chkconfig: - 99 99
+# description: This script will run ZeroMQ subcriber process to listen for events back from client
+#
+
+service_name="pkgevent_listener"
+script="/usr/local/git_tree/packaging-utils/pkgevent/${service_name}.py"
+pidfile="/var/run/${service_name}.pid"
+lockfile="/var/lock/subsys/${service_name}.lck"
+
+get_pid() {
+    pgrep -f "blue-python2.7 $script" > $pidfile
+}
+
+start() {
+    [ -d /var/log/pkgevent ] || mkdir /var/log/pkgevent
+    [[ -f $pidfile && -f $lockfile ]] && echo "${service_name} is already running with pid: $(cat $pidfile) " && exit 0
+    exec $script & 
+    touch $lockfile
+    sleep 1
+    get_pid
+    echo "Starting ${service_name} with pid: $(cat $pidfile)"
+}
+
+stop() {
+    if [[ -f $pidfile && -f $lockfile ]]; then
+        kill $(cat $pidfile)
+        rm -f $pidfile $lockfile
+        echo "Stopping ${service_name} "
+    fi
+}
+
+restart() {
+    stop
+    start
+}
+
+rh_status() {
+    [ -f $pidfile ] && echo "${service_name} is running with pid: $(cat $pidfile)" || echo "${service_name} is stopped"
+}
+
+case "$1" in
+    start)
+        $1
+        ;;
+    stop)
+        $1
+        ;;
+    status)
+        rh_$1
+        ;;
+    restart)
+        $1
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+esac

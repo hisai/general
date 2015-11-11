@@ -1,0 +1,3 @@
+This is a collection of python scripts to run ZeroMQ queue system which allow one to send file requests like sync/delete/check 
+to the client hosts that connect to the queue system.
+
