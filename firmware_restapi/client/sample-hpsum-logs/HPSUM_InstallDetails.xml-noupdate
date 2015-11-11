@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HPSUM_InstallDetails version="1.0">
+     <NodeName>localhost</NodeName>
+     <NodeReturnCode>3</NodeReturnCode>
+     <IsInstallerSuccess>false</IsInstallerSuccess>
+     <HasFailedDependencies>false</HasFailedDependencies>
+     <HasOmittedComponents>false</HasOmittedComponents>
+     <NodeStatus>Deployment done.</NodeStatus>
+     <DryRun>false</DryRun>
+     <ComponentCount>0</ComponentCount>
+     <ComponentResults/>
+</HPSUM_InstallDetails>

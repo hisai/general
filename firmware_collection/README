@@ -1,0 +1,21 @@
+************
+Requirement
+************
+You may need to run the fw_collect.py on host within the OOB network in order to connect to the ILO and OA of chassis.
+
+schema.sql
+==========
+You may need to import this database schema before you could run the fw_collect.py to store the firmwares data
+
+config.ini
+==========
+Config file for ILO and MySQL settings
+
+mysql.py
+==========
+Helper function to connect and store data in MySQL
+
+fw_collect.py
+==========
+Main script to invoke to collect firmwares info
+

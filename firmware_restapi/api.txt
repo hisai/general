@@ -1,0 +1,53 @@
+List of Firmwares API endpoints
+* NOTE: All call to the rest api are via HTTP GET unless specified to use HTTP POST *
+
+/firmware/hp_server/server_name/<_server_name>
+Get firmware info for a fqdn host e.g /firmware/hp_server/server_name/myrole-101.ams4.prod.example.com
+
+/firmware/hp_server/serial_no/<_serial_no>
+Get firmware info for a blade based on serial_no e.g /firmware/hp_server/serial_no/myrole-101.ams4.prod.example.com
+
+/firmware/hp_server/chassis/<_chassis>
+Get list of servers on a chassis e.g /firmware:/hp_server/chassis/prodch-XXXX.ams4.lom.example.com
+
+/firmware/hp_server/ilo_version/<_ilo_version>
+Get list of servers based on System ROM Version e.g /firmware/hp_server/ilo_version/2.20
+
+/firmware/hp_server/system_rom_version/<_system_rom>
+Get list of servers based on System ROM Version e.g /firmware/hp_server/system_rom_version/I36
+
+/firmware/hp_server/product_name/<_product_name>
+Get list of servers based on HP model e.g /firmware/hp_server/product_name/Gen9
+
+/firmware/hp_server/delete/server_name/<server_name> 
+Delete a server for a host using server fqdn e.g /firmware/hp_server/server_name/myrole-101.ams4.prod.example.com
+
+/firmware/hp_server/delete/serial_no/<serial_no> 
+Delete a server for a host using serial_no e.g /firmware/hp_server/serial_no/EB3530WXXX
+
+/firmware/hp_server/update [PUT]
+Update the firmware info for a host
+
+E.g
+curl -v -H "Content-Type: application/json" -X PUT 'http://localhost:5001/firmware/hp_server/update' -d '{
+"chassis": "prodch-JJ32B.ams4.lom.example.com",
+      "ilo_version": "2.20 May 20 2015",
+      "position": "17",
+      "product_name": "ProLiant BL460c Gen9",
+      "serial_no": "CZ3530WS1E",
+      "server_name": "testing1.ams4.prod.example.com" }'
+
+
+/firmware/hp_server/new [POST]
+Add the firmware info for a server
+
+E.g
+curl -i -H "Content-Type: application/json" -X POST 'http://localhost:5001/firmware/hp_server/new' -d '{
+"chassis": "prodch-JJ32B.ams4.lom.example.com",
+      "ilo_version": "2.20 May 20 2015",
+      "position": "16",
+      "product_name": "ProLiant BL460c Gen9",
+      "serial_no": "CZ3530WS1E",
+      "server_name": "testing1.ams4.prod.example.com",
+      "system_rom_version": "I36 05/06/2015"
+    }'

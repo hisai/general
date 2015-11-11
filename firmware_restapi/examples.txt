@@ -1,0 +1,27 @@
+# Sample curl commands to test the rest api
+
+curl 'http://localhost:5001/firmware/hp_server/system_rom_version/I36'
+curl 'http://localhost:5001/firmware/hp_server/product_name/Gen9'
+curl 'http://localhost:5001/firmware/hp_server/chassis/prodch-JJ32B.ams4.lom.example.com'
+curl 'http://localhost:5001/firmware/hp_server/server_name/testing1.ams4.prod.example.com'
+curl 'http://localhost:5001/firmware/hp_server/delete/server_name/testing1.ams4.prod.example.com'
+
+curl -i -H "Content-Type: application/json" -X POST 'http://localhost:5001/firmware/hp_server/new' -d '{
+"chassis": "prodch-JJ32B.ams4.lom.example.com",
+      "ilo_version": "2.20 May 20 2015",
+      "position": "16",
+      "product_name": "ProLiant BL460c Gen9",
+      "serial_no": "CZ3530WS1E",
+      "server_name": "testing1.ams4.prod.example.com",
+      "system_rom_version": "I36 05/06/2015"
+    }'
+
+curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:5001/firmware/hp_server/update' -d '{
+"chassis": "prodch-JJ32B.ams4.lom.example.com",
+      "ilo_version": "2.20 May 20 2015",
+      "position": "16",
+      "product_name": "ProLiant BL460c Gen10",
+      "serial_no": "CZ3530WS1E",
+      "server_name": "testing1.ams4.prod.example.com",
+      "system_rom_version": "I36 05/06/2015"
+    }'
